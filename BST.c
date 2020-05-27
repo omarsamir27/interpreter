@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <float.h>
+//#include <float.h>
 Node* createNode(char* key,double value) {
     Node *node = malloc(sizeof(Node));
     node->key = strdup(key);

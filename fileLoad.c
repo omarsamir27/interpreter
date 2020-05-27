@@ -23,7 +23,7 @@ void loadFile(char* filename,BST* bst,HEAP* heap){
         checkValidExp(expression);
         char* LHS=strtok(expression,"=");
         char* RHS=(LHS+1);
-        put(bst,LHS,yehia(RHS));
+        put(bst,LHS,yehia(bst,RHS));
 
     }
 }
