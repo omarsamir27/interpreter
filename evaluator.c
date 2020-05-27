@@ -69,11 +69,13 @@ double rightside_evaluation(char * str)
     char token=str[0];
     if(strchr(operators,token)!=NULL||token=='.')
         err(5,str);
+    else if(token==' ') continue;
     strncat(buff,&token, 1);
     for(int i=1; i<len; i++)
     {
         token =str[i];
-        if(token=='-')
+       if(token==' ') continue;
+       else if(token=='-')
         {
             if(isalpha(str[i-1])||isdigit(str[i-1])||str[i-1]==')')
             {
