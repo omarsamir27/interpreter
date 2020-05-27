@@ -39,7 +39,11 @@ Node* search(Node* treeRoot,char* varName) {
 double getKey(BST* bst,char* varName){
     Node* node=search(bst->root,varName);
     if (!strcasecmp(varName,node->key)) return node->value;
-    return DBL_MAX;
+    else {
+        fprintf(stderr,"Variable %s does not exist",varName);
+        exit(-1);
+    }
+    //return DBL_MAX;
 }
 void put(BST *tree,char* key,double value){
     Node* check=search(tree->root,key);
