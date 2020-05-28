@@ -41,8 +41,8 @@ void removeSpaces(char* expression){
         for(int i=0;i<length-Spaces-1;++i){
             expression[i]=tempstr[i];
         }
-    expression=realloc(expression,length-Spaces);
-    //expression[length-Spaces]='\0';
+    expression[length-Spaces]='\0';
+    expression=realloc(expression,strcspn(expression,"\0"));
 
 }
 void checkLeftSide(char* expression){
