@@ -111,7 +111,11 @@ double rightside_evaluation(BST* bst,char * str)
             radix_flag--;
         }
         else if(token=='_'||isalpha(token))
+        {   if(isdigit(str[i-1]))
+             err(11,str);
+            else
             strncat(buff,&token, 1);
+        }
         else
             err(8,str);
     }
