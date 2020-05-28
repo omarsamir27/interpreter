@@ -73,42 +73,38 @@ void checkValidExp(char* expression){
 }
 void err(int mode,char* expression){
     switch (mode) {
-    case 1:
+        case 1:
         fprintf(stderr,"Expression Contains multiple or No Equal Signs : %s",expression);
         exit(-1);
-
-     case 2:
-         fprintf(stderr,"Left hand side Illegal: Variable names can only start in letters or underscores: %s",expression);
+        case 2:
+         fprintf(stderr,"Left hand side Illegal: Variable names can only start in letters or underscores: %s \n",expression);
          exit(-1);
-      case 3:
-            fprintf(stderr,"Left hand side Illegal: side must contain a single variable with no wildcards: %s",expression);
+        case 3:
+            fprintf(stderr,"Left hand side Illegal: side must contain a single variable with no wildcards: %s \n",expression);
             exit(-1);
         case 4:
-            printf("problem in string: %s\n",expression);
-            puts("unbalance parentheses");
+            fprintf(stderr,"Right hand side Illegal: Unbalanced Parentheses in %s \n",expression);
             exit(1);
         case 5:
-            printf("problem in string: %s\n",expression);
-            puts("operator at extremities");
+            fprintf(stderr,"Right hand side Illegal: Operator at Extremities in %s \n",expression);
             exit(1);
         case 6:
-            printf("problem in string: %s\n",expression);
-            puts("operator overload");
+            fprintf(stderr,"Right hand side Illegal: Operator Overload in %s \n",expression);
             exit(1);
         case 7:
-            printf("problem in string: %s\n",expression);
-            puts("void parentheses");
+            fprintf(stderr,"Right hand side Illegal: Void Parentheses in %s \n",expression);
             exit(1);
         case 8:
-            printf("problem in string: %s\n",expression);
-            puts("undefined character");
+            fprintf(stderr,"Right hand side Illegal: Undefined Character in %s \n",expression);
             exit(1);
         case 9:
-            puts("right-handside not found");
+            fprintf(stderr,"Right hand side Not Found");
             exit(1);
         case 10:
-            printf("problem in string: %s\n",expression);
-            puts("radix point error");
+            fprintf(stderr,"Right hand side Illegal: Radix Point Error in %s \n",expression);
+            exit(1);
+        case 11:
+            fprintf(stderr,"Right hand side Illegal: Illegal Variable Name in %s \n",expression);
             exit(1);
       default:
             fprintf(stderr,"FATAL ERROR!");
