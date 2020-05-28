@@ -5,9 +5,15 @@
 #include "BST.h"
 #include "fileLoad.h"
 #include <stdlib.h>
-
-int main(){
+#include <string.h>
+char* case_mode;
+int main(int argc,char *argv[]){
+    case_mode=argv[1];
     BST* variableNameTree= initBST();
-    loadFile("test",variableNameTree);
+    char* filename=malloc(255);
+    puts("Please Write Absolute File path for Source");
+    fgets(filename,255,stdin);
+    filename[strcspn(filename,"\n")]='\0';
+    loadFile(filename,variableNameTree);
     InOrder(variableNameTree->root);
 }

@@ -10,7 +10,7 @@
 #include "BST.h"
 #include "stacks.h"
 #include "evaluator.h"
-
+extern char* case_mode;
 void loadFile(char* filename,BST* bst){
     FILE * file=fopen(filename,"r");
     fseek(file,0,SEEK_END);
@@ -24,6 +24,11 @@ void loadFile(char* filename,BST* bst){
         fgets(expression,100,file);
         expression[strcspn(expression,"\n")]='\0';
         checkValidExp(expression);
+        if (strcasecmp(case_mode,"case")){
+            for (int i = 0; expression[i]!='\0'; ++i) {
+                expression[i]=(char)toupper(expression[i]);
+            }
+        }
         char* LHS=strtok(expression,"=");
         char* RHS=(LHS+2);
         put(bst,LHS,rightside_evaluation(bst,RHS));
