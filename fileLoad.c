@@ -10,8 +10,9 @@
 #include "BST.h"
 #include "stacks.h"
 #include "evaluator.h"
+#include "heaps.h"
 extern char* case_mode;
-void loadFile(char* filename,BST* bst){
+void loadFile(char* filename,BST* bst,heapnode* heap){
     FILE * file=fopen(filename,"r");
     fseek(file,0,SEEK_END);
     long file_size=ftell(file);
@@ -24,16 +25,17 @@ void loadFile(char* filename,BST* bst){
         fgets(expression,100,file);
         expression[strcspn(expression,"\n")]='\0';
         checkValidExp(expression);
-        if (strcasecmp(case_mode,"case")){
-            for (int i = 0; expression[i]!='\0'; ++i) {
-                expression[i]=(char)toupper(expression[i]);
-            }
-        }
+//        if (strcasecmp(case_mode,"case")){
+//            for (int i = 0; expression[i]!='\0'; ++i) {
+//                expression[i]=(char)toupper(expression[i]);
+//            }
+//        }
         char* LHS=strtok(expression,"=");
         char* RHS=(LHS+2);
         put(bst,LHS,rightside_evaluation(bst,RHS));
-
     }
+    heap=heapSort();
+
 }
 void removeSpaces(char* expression){
     int length=strlen(expression)+1;
