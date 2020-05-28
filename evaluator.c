@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include<ctype.h>
+#include"evaluator.h"
 void err(int x,char * buff)
 {
     switch(x)
