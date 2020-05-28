@@ -9,27 +9,26 @@
 #include <stdio.h>
 extern BST* global_tree;
 
-void fillheap(heapnode* heap,Node * node,int i)
+void fillheap(heapnode* heap,Node * node)
 {
+    static int i=0;
     if (node == NULL)
         return;
-    fillheap(heap,node->left,i);
+    fillheap(heap,node->left);
     heap[i].value=node->value;
-    strcpy(heap[i].key,node->key);i++;
-    fillheap(heap,node->right,i);
+    strcpy(heap[i].key,node->key);
+    i++;
+    fillheap(heap,node->right);
 }
 void swap(heapnode * x,heapnode * y)
 {
     heapnode  temp;
-
     strcpy(temp.key,(*x).key);
     temp.value=(*x).value;
     strcpy((*x).key,(*y).key);
     (*x).value=(*y).value;
     strcpy((*y).key,temp.key);
     (*y).value=temp.value;
-//    *x=*y;
-//    *y=*temp;
 }
 void heapify(heapnode * heap, int size, int i)
 {
@@ -46,10 +45,13 @@ void heapify(heapnode * heap, int size, int i)
         heapify(heap,size, root);
     }
 }
-heapnode* heapSort()
+heapnode* initHeap(){
+    heapnode* toReturn=malloc(sizeof(heapnode)*global_tree->count);
+    return toReturn;
+}
+heapnode* heapSort(heapnode* heap)
 {
-    heapnode* heap=malloc(sizeof(heapnode)*global_tree->count);
-    fillheap(heap,global_tree->root,0);
+    fillheap(heap,global_tree->root);
     for (int i = global_tree->count / 2 - 1; i >= 0; i--)
         heapify(heap,global_tree->count, i);
     for (int i=global_tree->count-1; i>0; i--)
@@ -57,7 +59,6 @@ heapnode* heapSort()
         swap(&heap[0],&heap[i]);
         heapify(heap,i,0);
     }
-    printf("%f",heap[0].value);
     return heap;
 }
 void printHeap(heapnode* heap){

@@ -83,6 +83,6 @@ empty_tree:{
 void InOrder(Node* root){
     if (!root) return;
     InOrder(root->left);
-    printf("%s = %.3f \n  ",root->key,root->value);
+    printf("%s = %.3f\n",root->key,root->value);
     InOrder(root->right);
 }

@@ -12,29 +12,36 @@
 #include "evaluator.h"
 #include "heaps.h"
 extern char* case_mode;
-void loadFile(char* filename,BST* bst,heapnode* heap){
-    FILE * file=fopen(filename,"r");
-    fseek(file,0,SEEK_END);
-    long file_size=ftell(file);
+heapnode* loadFile(char* filename,BST* bst) {
+    FILE *file = fopen(filename, "r");
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
     rewind(file);
-    char* expression;
+    char *expression;
 
-    while (ftell(file)!=file_size){
-        expression=malloc(100);
-        memset(expression,0,100);
-        fgets(expression,100,file);
-        expression[strcspn(expression,"\n")]='\0';
+    while (ftell(file) != file_size) {
+        expression = malloc(100);
+        memset(expression, 0, 100);
+        fgets(expression, 100, file);
+        expression[strcspn(expression, "\n")] = '\0';
         checkValidExp(expression);
-//        if (strcasecmp(case_mode,"case")){
-//            for (int i = 0; expression[i]!='\0'; ++i) {
-//                expression[i]=(char)toupper(expression[i]);
-//            }
-//        }
-        char* LHS=strtok(expression,"=");
-        char* RHS=(LHS+2);
-        put(bst,LHS,rightside_evaluation(bst,RHS));
+        if (case_mode == NULL)
+            goto insensitive;
+        if (strcasecmp(case_mode, "case") != 0) {
+            for (int i = 0; expression[i] != '\0'; ++i) {
+                expression[i] = (char) toupper(expression[i]);
+            }
+        }
+
+        insensitive:
+        {
+            char *LHS = strtok(expression, "=");
+            char *RHS = (LHS + 2);
+            put(bst, LHS, rightside_evaluation(bst, RHS));
+        }
     }
-    heap=heapSort();
+    heapnode *ValueHeap = initHeap();
+    return heapSort(ValueHeap);
 
 }
 void removeSpaces(char* expression){

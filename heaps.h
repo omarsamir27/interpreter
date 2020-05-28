@@ -11,10 +11,11 @@ typedef struct heapnode{
     char key[30];
     double value;
 }heapnode;
-void fillheap(heapnode* heap,Node * node,int i);
+void fillheap(heapnode* heap,Node * node);
 void swap(heapnode * x,heapnode * y);
 void heapify(heapnode * heap, int size, int i);
-heapnode* heapSort();
+heapnode* heapSort(heapnode* heap);
 void printHeap(heapnode* heap);
+heapnode* initHeap();
 
 #endif //INTERPRETER_HEAPS_H

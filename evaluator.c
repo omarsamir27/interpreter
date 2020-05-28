@@ -119,7 +119,7 @@ double rightside_evaluation(BST* bst,char * str)
         else
             err(8,str);
     }
-    printf("%s\n",buff);
+    //printf("%s\n",buff); /*Debug*/
     return infixToPostfix(buff);
 
 }
