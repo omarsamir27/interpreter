@@ -8,22 +8,25 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "BST.h"
+#include "stacks.h"
+#include "evaluator.h"
 
-void loadFile(char* filename,BST* bst,HEAP* heap){
+void loadFile(char* filename,BST* bst){
     FILE * file=fopen(filename,"r");
     fseek(file,0,SEEK_END);
+    long file_size=ftell(file);
     rewind(file);
     char* expression;
 
-    while (!feof(file)){
+    while (ftell(file)!=file_size){
         expression=malloc(100);
         memset(expression,0,100);
         fgets(expression,100,file);
         expression[strcspn(expression,"\n")]='\0';
         checkValidExp(expression);
         char* LHS=strtok(expression,"=");
-        char* RHS=(LHS+1);
-        put(bst,LHS,yehia(bst,RHS));
+        char* RHS=(LHS+2);
+        put(bst,LHS,rightside_evaluation(bst,RHS));
 
     }
 }
@@ -41,7 +44,7 @@ void removeSpaces(char* expression){
         for(int i=0;i<length-Spaces-1;++i){
             expression[i]=tempstr[i];
         }
-    expression[length-Spaces]='\0';
+    expression[length-Spaces-1]='\0';
     expression=realloc(expression,strcspn(expression,"\0"));
 
 }
@@ -59,8 +62,9 @@ void checkValidExp(char* expression){
     }
     if (equalSigns!=1) err(1,expression);;
     //char* duplicate=strdup(expression);
-    checkLeftSide(expression);
     removeSpaces(expression);
+    checkLeftSide(expression);
+
 }
 void err(int mode,char* expression){
     switch (mode) {
@@ -74,8 +78,36 @@ void err(int mode,char* expression){
       case 3:
             fprintf(stderr,"Left hand side Illegal: side must contain a single variable with no wildcards: %s",expression);
             exit(-1);
+        case 4:
+            printf("problem in string: %s\n",expression);
+            puts("unbalance parentheses");
+            exit(1);
+        case 5:
+            printf("problem in string: %s\n",expression);
+            puts("operator at extremities");
+            exit(1);
+        case 6:
+            printf("problem in string: %s\n",expression);
+            puts("operator overload");
+            exit(1);
+        case 7:
+            printf("problem in string: %s\n",expression);
+            puts("void parentheses");
+            exit(1);
+        case 8:
+            printf("problem in string: %s\n",expression);
+            puts("undefined character");
+            exit(1);
+        case 9:
+            puts("right-handside not found");
+            exit(1);
+        case 10:
+            printf("problem in string: %s\n",expression);
+            puts("radix point error");
+            exit(1);
       default:
             fprintf(stderr,"FATAL ERROR!");
             exit(-1);
     }
 }
+

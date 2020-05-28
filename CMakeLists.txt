@@ -3,4 +3,5 @@ project(interpreter C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(interpreter main.c fileLoad.h fileLoad.c fileLoad.h BST.c BST.h)
+add_executable(interpreter  fileLoad.h fileLoad.c fileLoad.h BST.c BST.h evaluator.c evaluator.h stacks.c stacks.h main.c)
+target_link_libraries(interpreter m)

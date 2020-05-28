@@ -47,9 +47,12 @@ double getKey(BST* bst,char* varName){
 }
 void put(BST *tree,char* key,double value){
     Node* check=search(tree->root,key);
+    if (check==NULL) {goto empty_tree;}
     if(!strcasecmp(key,check->key)){
         check->value=value;
+        return;
     }
+empty_tree:{
     Node* toAdd=createNode(key,value);
     if (!(tree->root)){
         tree->root=toAdd;
@@ -76,7 +79,7 @@ void put(BST *tree,char* key,double value){
     else
         parent->right=current;
     (tree->count)++;
-}
+}}
 void InOrder(Node* root){
     if (!root) return;
     InOrder(root->left);

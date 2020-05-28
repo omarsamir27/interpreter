@@ -2,40 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include<ctype.h>
+#include "BST.h"
 #include"evaluator.h"
-void err(int x,char * buff)
-{
-    switch(x)
-    {
-    case 4:
-        printf("problem in string: %s\n",buff);
-        puts("unbalance parentheses");
-        exit(1);
-    case 5:
-        printf("problem in string: %s\n",buff);
-        puts("operator at extremities");
-        exit(1);
-    case 6:
-         printf("problem in string: %s\n",buff);
-        puts("operator overload");
-        exit(1);
-    case 7:
-         printf("problem in string: %s\n",buff);
-        puts("void parentheses");
-        exit(1);
-    case 8:
-       printf("problem in string: %s\n",buff);
-        puts("undefined character");
-        exit(1);
-    case 9:
-        puts("right-handside not found");
-        exit(1);
-    case 10:
-        printf("problem in string: %s\n",buff);
-        puts("radix point error");
-        exit(1);
-    }
-}
+#include "fileLoad.h"
+#include "stacks.h"
+BST* global_tree;
 void checker_bracket(char* buff)
 {
     int count=0;
@@ -57,8 +28,8 @@ void checker_bracket(char* buff)
         err(4,buff);
 }
 
-double rightside_evaluation(char * str)
-{
+double rightside_evaluation(BST* bst,char * str)
+{   global_tree=bst;
     int len=strlen(str);
     if(!len)
         err(9,str);
@@ -70,8 +41,9 @@ double rightside_evaluation(char * str)
     char token=str[0];
     if(strchr(operators,token)!=NULL||token=='.')
         err(5,str);
-    else if(token==' ') continue;
-    strncat(buff,&token, 1);
+    else if(token==' '){}
+    else
+        strncat(buff,&token, 1);
     for(int i=1; i<len; i++)
     {
         token =str[i];
@@ -99,7 +71,7 @@ double rightside_evaluation(char * str)
         }
         else if(strchr(operators,token)!=NULL)
         {
-            if(strchr(key,str[i-1])!=NULL||str[i-1]=='('||str[i-1]=='-')
+            if(strchr(operators,str[i-1])!=NULL||str[i-1]=='('||str[i-1]=='-')
                 err(5,str);
             else
             {
@@ -143,7 +115,8 @@ double rightside_evaluation(char * str)
         else
             err(8,str);
     }
-    //return stack infix to postfix{str}
-    printf("%s",buff);
+    printf("%s\n",buff);
+    return infixToPostfix(buff);
+
 }
 

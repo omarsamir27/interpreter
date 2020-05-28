@@ -5,7 +5,7 @@
 #ifndef INTERPRETER_FILELOAD_H
 #define INTERPRETER_FILELOAD_H
 #include "BST.h"
-void loadFile(char* filename,BST* bst,HEAP* heap);
+void loadFile(char* filename,BST* bst);
 void removeSpaces(char* expression);
 void checkLeftSide(char* leftSide);
 void checkValidExp(char* expression);

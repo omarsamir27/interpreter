@@ -4,6 +4,8 @@
 #include<ctype.h>
 #include<math.h>
 #include "stacks.h"
+#include "BST.h"
+extern BST* global_tree;
 Stack * initialize()
 {
     Stack* newStack=malloc(sizeof(Stack));
@@ -90,7 +92,7 @@ double evaluatePostfix(char* postfix)
         }
         else if (isalpha(token[0])||token[0]==('_'))
         {
-            temp.dData; //getkey;
+            temp.dData=getKey(global_tree,token);
             push(&head,&temp);
         }
         else
