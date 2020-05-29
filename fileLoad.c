@@ -23,6 +23,8 @@ heapnode* loadFile(char* filename,BST* bst) {
         expression = malloc(100);
         memset(expression, 0, 100);
         fgets(expression, 100, file);
+        if(!strcasecmp(expression,"\n"))
+            break;
         expression[strcspn(expression, "\n")] = '\0';
         checkValidExp(expression);
         if (case_mode == NULL)
