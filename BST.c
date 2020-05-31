@@ -86,3 +86,10 @@ void InOrder(Node* root){
     printf("%s = %.3f\n",root->key,root->value);
     InOrder(root->right);
 }
+void delete(Node* root){
+    if (!root) return;
+    InOrder(root->left);
+    free(node->key);
+    free(node);
+    InOrder(root->right);
+}
