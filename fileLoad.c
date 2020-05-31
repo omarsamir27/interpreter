@@ -43,6 +43,7 @@ heapnode* loadFile(char* filename,BST* bst) {
         }
     }
     heapnode *ValueHeap = initHeap();
+    fclose(file);
     return heapSort(ValueHeap);
 
 }
