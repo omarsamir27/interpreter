@@ -18,6 +18,7 @@ typedef struct BST{
 BST* initBST();
 Node* createNode(char* key,double value);
 void put(BST* tree,char* key,double value);
+void delete(Node* root);
 Node* search(Node* treeRoot,char* key);
 double getKey(BST* bst,char* varName);
 void InOrder(Node* root);
