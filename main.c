@@ -23,6 +23,8 @@ int main(int argc , char* argv[]){
         puts("Sorting By Value");
         printHeap(ValueHeap);
         /*CLEAR BST AND HEAP*/
+        delete(variableNameTree->root);
+        free(ValueHeap);
     }while (strcasecmp(filename,"")!=0)
 
 
