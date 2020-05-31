@@ -88,8 +88,8 @@ void InOrder(Node* root){
 }
 void delete(Node* root){
     if (!root) return;
-    InOrder(root->left);
+    delete(root->left);
+    delete(root->right);
     free(root->key);
     free(root);
-    InOrder(root->right);
 }
