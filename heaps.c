@@ -12,6 +12,8 @@ extern BST* global_tree;
 void fillheap(heapnode* heap,Node * node)
 {
     static int i=0;
+    if (i==global_tree->count)
+        i=0;
     if (node == NULL)
         return;
     fillheap(heap,node->left);
@@ -46,7 +48,7 @@ void heapify(heapnode * heap, int size, int i)
     }
 }
 heapnode* initHeap(){
-    heapnode* toReturn=malloc(sizeof(heapnode)*global_tree->count);
+    heapnode* toReturn=malloc(sizeof(heapnode)*(global_tree->count));
     return toReturn;
 }
 heapnode* heapSort(heapnode* heap)

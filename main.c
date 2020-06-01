@@ -10,22 +10,24 @@
 char* case_mode;
 int main(int argc , char* argv[]){
     case_mode=argv[1];
-    BST* variableNameTree= initBST();
+    BST* variableNameTree;
+    heapnode* ValueHeap;
     char* filename=malloc(255);
     do{
+        variableNameTree= initBST();
         memset(filename,0,255);
         puts("Please Write Absolute File path for Source");
         fgets(filename,255,stdin);
         filename[strcspn(filename,"\n")]='\0';
-        heapnode* ValueHeap =loadFile(filename,variableNameTree);
+        ValueHeap =loadFile(filename,variableNameTree);
         puts("Sorting by Key");
         InOrder(variableNameTree->root);
         puts("Sorting By Value");
         printHeap(ValueHeap);
         /*CLEAR BST AND HEAP*/
-        delete(variableNameTree->root);
         free(ValueHeap);
-    }while (strcasecmp(filename,"")!=0)
+        clear(variableNameTree);
+    }while (strcasecmp(filename,"")!=0);
 
 
 

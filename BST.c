@@ -93,3 +93,7 @@ void delete(Node* root){
     free(root->key);
     free(root);
 }
+void clear(BST* toDel){
+    delete(toDel->root);
+    free(toDel);
+}

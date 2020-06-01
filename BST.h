@@ -22,4 +22,5 @@ void delete(Node* root);
 Node* search(Node* treeRoot,char* key);
 double getKey(BST* bst,char* varName);
 void InOrder(Node* root);
+void clear(BST* toDel);
 #endif //INTERPRETER_BST_H
