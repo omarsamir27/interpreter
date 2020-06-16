@@ -1,7 +1,3 @@
-//
-// Created by omar on 5/28/20.
-//
-
 #ifndef INTERPRETER_HEAPS_H
 #define INTERPRETER_HEAPS_H
 
