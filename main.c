@@ -1,6 +1,3 @@
-//
-// Created by omar on 5/28/20.
-//
 #include <stdio.h>
 #include "BST.h"
 #include "fileLoad.h"
