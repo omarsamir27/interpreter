@@ -1,7 +1,3 @@
-//
-// Created by omar on 5/28/20.
-//
-
 #include "heaps.h"
 #include "BST.h"
 #include <stdlib.h>
