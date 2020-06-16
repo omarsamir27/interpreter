@@ -38,7 +38,7 @@ heapnode* loadFile(char* filename,BST* bst) {
         insensitive:
         {
             char *LHS = strtok(expression, "=");
-            char *RHS = (LHS + 2);
+            char *RHS = (LHS + strcspn(LHS,"=")+1);
             put(bst, LHS, rightside_evaluation(bst, RHS));
         }
     }
