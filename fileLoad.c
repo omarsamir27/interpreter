@@ -1,7 +1,3 @@
-//
-// Created by omar on 5/25/20.
-//
-
 #include "fileLoad.h"
 #include <stdlib.h>
 #include <string.h>
