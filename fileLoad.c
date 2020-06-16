@@ -14,6 +14,7 @@
 extern char* case_mode;
 heapnode* loadFile(char* filename,BST* bst) {
     FILE *file = fopen(filename, "r");
+    if(!file) fprintf(stderr,"File Does Not Exist");
     fseek(file, 0, SEEK_END);
     long file_size = ftell(file);
     rewind(file);
