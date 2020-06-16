@@ -1,7 +1,3 @@
-//
-// Created by omar on 5/25/20.
-//
-
 #ifndef INTERPRETER_FILELOAD_H
 #define INTERPRETER_FILELOAD_H
 #include "BST.h"
