@@ -1,7 +1,3 @@
-//
-// Created by omar on 5/25/20.
-//
-
 #include "BST.h"
 #include <stdio.h>
 #include <stdlib.h>
